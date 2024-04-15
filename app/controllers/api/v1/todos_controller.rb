@@ -2,20 +2,62 @@ module Api
   module V1
     class TodosController < ApplicationController
       def index
-        @todos = Todo.order("created_at DESC")
+        @todos = Todo.order("created_at ASC, updated_at ASC")
         render json: @todos
       end
 
       def create
-        @todo = Todo.create(todo_params)
+       
+        begin 
+          @todo = Todo.create(todo_params)
+        rescue => e
+          render json: { status: 400, todo: @todo, message: @todo.errors }
+        end
         render json: @todo
       end
 
+      def destroy
+        begin  
+          todo = Todo.find(params[:id])
+          todo.destroy
+        rescue => e
+          render json: { status: 400, todo: todo, message: todo.errors}
+        end
+        render json: {todo: todo, message: "success" }
+      end
+      
+      def update
+        todo = Todo.find(params[:id])
+        todo.update!(todo_params)
+        render json: todo
+      end
+
+
+    #User Table Controller
+    
+      
+
+
+
+
+
+
+
+        
+    
+   
       private
+
+      
 
       def todo_params
         params.require(:todo).permit(:title, :body)
       end
+
+      def users_params
+        params.require(:user).permit(:name, :role )
+      end
+
     end
   end
 end

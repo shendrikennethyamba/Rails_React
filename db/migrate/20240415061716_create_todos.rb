@@ -3,8 +3,11 @@ class CreateTodos < ActiveRecord::Migration[7.1]
     create_table :todos do |t|
       t.string :title
       t.string :body
+      t.string :isDone
+      
+
 
       t.timestamps
     end
-  end
+
 end
