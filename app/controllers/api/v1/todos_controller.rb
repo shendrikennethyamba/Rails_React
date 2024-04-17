@@ -2,7 +2,7 @@ module Api
   module V1
     class TodosController < ApplicationController
       def index
-        @todos = Todo.order("created_at DESC")
+        @todos = Todo.order("created_at ASC, updated_at ASC")
         render json: @todos
       end
 
