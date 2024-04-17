@@ -1,8 +1,9 @@
-module Api
-  module V1
+module Api::V1
+ 
     class TodosController < ApplicationController
       def index
-        @todos = Todo.order("created_at ASC, updated_at ASC")
+        @user = User.find(params[:user_id])
+        @todos = @user.Todo.order("created_at ASC, updated_at ASC")
         render json: @todos
       end
 
@@ -31,32 +32,14 @@ module Api
         render json: todo
       end
 
-
-    #User Table Controller
-    
       
-
-
-
-
-
-
-
-        
-    
-   
       private
-
-      
-
+    
       def todo_params
         params.require(:todo).permit(:title, :body)
       end
 
-      def users_params
-        params.require(:user).permit(:name, :role )
-      end
-
-    end
+     
+  
   end
 end

@@ -1,16 +1,16 @@
-module Api
-    module V1
-  
-        class Users_Controller < ApplicationController
+class Api::V1::UsersController < ApplicationController
             def index
-                @users = user.order("created_at DESC")
+                @users = User.all
                 render json: @users
             end 
 
-            private
+            def create
+                begin
+                @user = User.create(user_params)
 
-        end
-    
-    end
+            private
+            def users_params
+                params.require(:user).permit(:name, :role )
+              end
 end
 
