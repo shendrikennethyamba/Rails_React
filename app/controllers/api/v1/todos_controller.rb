@@ -7,7 +7,6 @@ module Api
       end
 
       def create
-       
         begin 
           @todo = Todo.create(todo_params)
         rescue => e

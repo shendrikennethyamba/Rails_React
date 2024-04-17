@@ -7,15 +7,3 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-todos = Todo.create(
-  [
-    {
-      title: "Shopping",
-      body: "Buy Groceries",
-    },
-    {
-      title: "Exercise",
-      body: "Treadmill and Weightlift"
-    },
-    
-  ])

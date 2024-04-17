@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :todos
+      resources :todos, only: [:index, :create, :update, :destroy]
+      delete 'todos', to: 'todos#destroy_all'
     end
   end
 
@@ -19,3 +20,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 end
+  
