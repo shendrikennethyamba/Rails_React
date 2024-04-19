@@ -25,14 +25,11 @@ module Api::V1
         end
         render json: {todo: todo, message: "success" }
       end
-      
       def update
         todo = Todo.find(params[:id])
         todo.update!(todo_params)
         render json: todo
-      end
-
-      
+      end      
       private
     
       def todo_params
